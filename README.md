@@ -20,6 +20,8 @@ run `node server.js` and navigate to `http://localhost:3000`
 
 ## Screenshots
 
+![screen shot 2016-12-31 at 11 31 21 pm](https://cloud.githubusercontent.com/assets/7545796/21580518/ecf3c3ec-cfb1-11e6-9cee-adb9af563d46.png)
+![screen shot 2016-12-31 at 11 33 26 pm](https://cloud.githubusercontent.com/assets/7545796/21580519/ecf42a6c-cfb1-11e6-924c-602d9f295383.png)
 
 
 
