@@ -1,8 +1,8 @@
-# SportScoresApp-ReactJS
+# SportScoresApp-ReactJS (Work in Progress)
 
 NodeJS + ReactJS + Redux Stack
 
-Work in Progress
+
 
 ## Synopsis
 
