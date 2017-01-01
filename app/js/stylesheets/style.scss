@@ -1,0 +1,224 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+
+  * {
+    font-family: 'Open Sans', sans-serif;
+  }
+}
+
+.navigation {
+  .navbar {
+    position: fixed !important;
+  }
+  .drawer {
+    margin-top: 64px;
+  }
+}
+
+.mainContainer {
+  position: fixed;
+  left: 250px;
+  top: 64px;
+  display: flex;
+  height: calc(100% - 64px);
+  width: calc(100% - 250px);
+}
+
+@media screen  and (min-width: 979px) /* Non-Tablet */ {
+  .navigation {
+    .drawer {
+      transform: translate(0px, 0px) !important;
+    }
+  }
+}
+
+
+@media screen  and (max-width: 979px) /* Tablet */ {
+  .mainContainer {
+    left: 0;
+    width: 100%;
+  }
+
+  .navigation {
+    .drawer {
+      transform: inherit;
+    }
+  }
+}
+
+.mainContent {
+  background: rgb(10, 10, 10);
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.scoreboard {
+  // z-index: 2;
+  // position: absolute;
+  // margin-top: 64px;
+  // padding: 10px;
+  background: rgb(54, 54, 54);
+  width: 350px;
+  height: 100%;
+  overflow-y: scroll;
+  padding-bottom: 30px;
+}
+
+.game {
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  height: 60px;
+  padding: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  align-items: center;
+  cursor: pointer;
+
+  .gameContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    height: inherit;
+    // width: 100%;
+    // margin: 10px;
+  }
+
+  .timeContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+    text-align: center;
+    height: 45px;
+
+    .time {
+      font-size: 14px;
+    }
+
+    .periodLine {
+      font-size: 10px;
+    }
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #444444;
+  }
+
+  &:hover {
+    background: #262829;
+    transition: .2s ease-in-out;
+  }
+}
+
+.team {
+  display: flex;
+  width: 100%;
+  align-items: center;
+
+  .teamContainer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  .score {
+    font-weight: 900;
+  }
+}
+
+.gameStatsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 20px;
+
+  > div {
+    margin-bottom: 10px;
+  }
+}
+
+.quickScoreContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+
+  .scoreContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+
+    .miniContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .icon {
+        margin: 0 20px;
+
+        img {
+          width: 96px;
+          height: 96px;
+        }
+      }
+
+      .teamScore {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        .score {
+          font-size: 30px;
+        }
+        .turnovers {
+          font-size: 12px;
+        }
+      }
+
+      &.reverse {
+        flex-direction: row-reverse;
+      }
+    }
+
+    .timeInfo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.statsTableContainer {
+  width: 100%;
+  // height: 400px;
+  // background: grey;
+}
+
+.periodTableContainer {
+  width: 350px;
+}
