@@ -13,10 +13,10 @@ The project is a web app that provides live sports scores. It is an attempt to r
 
 The intention of this project was to practice React + Redux Architecture and build a simple, easy-to-use scores app with no ads and quick live updates.
 
+
 ## Usage
 
 run `node server.js` and navigate to `http://localhost:3000`
-
 
 ## Screenshots
 
@@ -24,9 +24,15 @@ run `node server.js` and navigate to `http://localhost:3000`
 ![screen shot 2016-12-31 at 11 33 26 pm](https://cloud.githubusercontent.com/assets/7545796/21580519/ecf42a6c-cfb1-11e6-924c-602d9f295383.png)
 
 
-
 ## API Reference
 
+
+## TODO
+
+- Add Date Picker
+- Make more responsive
+- Add support for more sports
+- Refactor Codebase and Stylesheet
 
 ## Contributing
 
