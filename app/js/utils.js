@@ -7,12 +7,11 @@ export function secondsToMinSec(time) {
     newTime += `${mins}:`
   }
 
-  newTime += str_pad_left(secs, '0', 2);
+  newTime += padNumbers(secs, '0', 2);
 
   return newTime;
 }
 
-
-function str_pad_left(string,pad,length) {
+export function padNumbers(string, pad, length) {
     return (new Array(length+1).join(pad)+string).slice(-length);
 }

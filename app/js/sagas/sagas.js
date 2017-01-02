@@ -1,4 +1,5 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { padNumbers } from '../utils';
 
 const BASE_URL = 'http://mrest.protrade.com/api/v7';
 
@@ -61,5 +62,5 @@ export default mySaga;
 function getCurrentDate() {
   const today = new Date();
 
-  return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+  return `${today.getFullYear()}-${padNumbers(today.getMonth() + 1, '0', 2)}-${padNumbers(today.getDate(), '0', 2)}`;
 }

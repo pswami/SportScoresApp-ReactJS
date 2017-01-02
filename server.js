@@ -3,10 +3,8 @@ const app        = express();                 // define our app using express
 const bodyParser = require('body-parser');
 const request    = require("request");
 var path         = require('path');
-var socket_io    = require( "socket.io" );
 
 var server = require('http').createServer(app);
-var io = require('socket.io')(server);
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -65,10 +63,6 @@ router.get('/gameDetails', function(req, res) {
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
-
-// io.on('connection', function (socket) {
-//
-// });
 
 // START THE SERVER
 // =============================================================================
