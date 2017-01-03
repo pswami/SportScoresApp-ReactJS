@@ -35,10 +35,10 @@ export default class GameStats extends React.Component {
   updateGameStats = (gameID) => {
     const { actions } = this.props;
 
-
+    actions.setGameID(gameID);
+    
     if (updateGameStatsRefreshID >= 0) {
       clearInterval(updateGameStatsRefreshID);
-      actions.setGameID(gameID);
     }
 
     updateGameStatsRefreshID = setInterval(function() {

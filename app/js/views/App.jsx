@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import React from 'react';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory, Redirect } from 'react-router';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -43,9 +43,12 @@ function mapDispatchToProps(dispatch) {
 }
 
 const routes = (
-  <Route path="(:sport)" component={Home}>
-    <Route path="(:gameID)" component={MainContent} />
-  </Route>
+  <div>
+  <Redirect from="/" to="nba" />
+    <Route path=":sport" component={Home}>
+      <Route path="(:gameID)" component={MainContent} />
+    </Route>
+  </div>
 );
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -57,7 +60,7 @@ export default class App extends React.Component {
   render() {
     return (
      <MuiThemeProvider muiTheme={muiTheme}>
-       <Router history={hashHistory} createElement={this.createElement}>
+       <Router history={browserHistory} createElement={this.createElement}>
          {routes}
        </Router>
      </MuiThemeProvider>

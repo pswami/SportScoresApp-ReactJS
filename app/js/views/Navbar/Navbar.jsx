@@ -45,25 +45,25 @@ export default class Navbar extends React.Component {
           open={this.state.open}
         >
           <MenuItem
-            onClick={() => router.push('nba')}
+            onClick={() => router.push('/nba')}
             leftIcon={<FontIcon className="material-icons" color="white">donut_large</FontIcon>}
           >
             NBA
           </MenuItem>
           <MenuItem
-            onClick={() => router.push('nfl')}
+            onClick={() => router.push('/nfl')}
             leftIcon={<FontIcon className="material-icons" color="white">cloud_download</FontIcon>}
           >
             NFL
           </MenuItem>
           <MenuItem
-            onClick={() => router.push('mlb')}
+            onClick={() => router.push('/mlb')}
             leftIcon={<FontIcon className="material-icons" color="white">dns</FontIcon>}
           >
             MLB
           </MenuItem>
           <MenuItem
-            onClick={() => router.push('nhl')}
+            onClick={() => router.push('/nhl')}
             leftIcon={<FontIcon className="material-icons" color="white">dns</FontIcon>}
           >
             NHL

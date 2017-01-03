@@ -17,7 +17,10 @@ const port = process.env.PORT || 3000;        // set our port
 // =============================================================================
 const router = express.Router();              // get an instance of the express Router
 
-app.use('/', express.static(path.join(__dirname, 'dist')))
+
+// app.use('/', express.static(path.join(__dirname, 'dist')))
+app.use(express.static(path.join(__dirname + '/dist')));
+
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/playerStats', function(req, res) {
@@ -58,11 +61,14 @@ router.get('/gameDetails', function(req, res) {
   }
 });
 
-// more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
+
+app.get('*', function (req, res) {
+  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+});
 
 // START THE SERVER
 // =============================================================================

@@ -26514,9 +26514,14 @@
 	}
 
 	var routes = _react2.default.createElement(
-	  _reactRouter.Route,
-	  { path: '(:sport)', component: _Home2.default },
-	  _react2.default.createElement(_reactRouter.Route, { path: '(:gameID)', component: _MainContent2.default })
+	  'div',
+	  null,
+	  _react2.default.createElement(_reactRouter.Redirect, { from: '/', to: 'nba' }),
+	  _react2.default.createElement(
+	    _reactRouter.Route,
+	    { path: ':sport', component: _Home2.default },
+	    _react2.default.createElement(_reactRouter.Route, { path: '(:gameID)', component: _MainContent2.default })
+	  )
 	);
 
 	var App = (_dec = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps), _dec(_class = function (_React$Component) {
@@ -26546,7 +26551,7 @@
 	        { muiTheme: muiTheme },
 	        _react2.default.createElement(
 	          _reactRouter.Router,
-	          { history: _reactRouter.hashHistory, createElement: this.createElement },
+	          { history: _reactRouter.browserHistory, createElement: this.createElement },
 	          routes
 	        )
 	      );
@@ -39159,7 +39164,7 @@
 	            _MenuItem2.default,
 	            {
 	              onClick: function onClick() {
-	                return router.push('nba');
+	                return router.push('/nba');
 	              },
 	              leftIcon: _react2.default.createElement(
 	                _FontIcon2.default,
@@ -39173,7 +39178,7 @@
 	            _MenuItem2.default,
 	            {
 	              onClick: function onClick() {
-	                return router.push('nfl');
+	                return router.push('/nfl');
 	              },
 	              leftIcon: _react2.default.createElement(
 	                _FontIcon2.default,
@@ -39187,7 +39192,7 @@
 	            _MenuItem2.default,
 	            {
 	              onClick: function onClick() {
-	                return router.push('mlb');
+	                return router.push('/mlb');
 	              },
 	              leftIcon: _react2.default.createElement(
 	                _FontIcon2.default,
@@ -39201,7 +39206,7 @@
 	            _MenuItem2.default,
 	            {
 	              onClick: function onClick() {
-	                return router.push('nhl');
+	                return router.push('/nhl');
 	              },
 	              leftIcon: _react2.default.createElement(
 	                _FontIcon2.default,
@@ -49361,7 +49366,7 @@
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'game', onClick: function onClick() {
-	        router.push(sport + '/' + data.GameId);
+	        router.push('/' + sport + '/' + data.GameId);
 	        // actions.getPlayerStatsByGame(data.GameId);
 	        // actions.getGameDetails(data.GameId);
 	      } },
@@ -49937,9 +49942,10 @@
 	      var actions = _this.props.actions;
 
 
+	      actions.setGameID(gameID);
+
 	      if (updateGameStatsRefreshID >= 0) {
 	        clearInterval(updateGameStatsRefreshID);
-	        actions.setGameID(gameID);
 	      }
 
 	      updateGameStatsRefreshID = setInterval(function () {

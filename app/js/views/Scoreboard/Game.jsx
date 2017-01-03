@@ -18,7 +18,7 @@ const Team = ({ icon, name, record, score}) => {
 const Game = ({data, actions, router, sport}) => {
   return (
     <div className="game" onClick={() => {
-      router.push(`${sport}/${data.GameId}`);
+      router.push(`/${sport}/${data.GameId}`);
       // actions.getPlayerStatsByGame(data.GameId);
       // actions.getGameDetails(data.GameId);
     }}>
