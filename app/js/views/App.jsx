@@ -12,6 +12,8 @@ import { connect } from 'react-redux';
 import Home from './Home';
 import Root from './Root';
 import MainContent from './MainContent';
+import GameStats from './GameStats';
+
 import * as actionCreators from '../actions';
 
 const muiTheme = getMuiTheme({
@@ -44,9 +46,9 @@ function mapDispatchToProps(dispatch) {
 
 const routes = (
   <div>
-  <Redirect from="/" to="nba" />
+    <Redirect from="/" to="nba" />
     <Route path=":sport" component={Home}>
-      <Route path="(:gameID)" component={MainContent} />
+      <Route path="(:gameID)" component={GameStats} />
     </Route>
   </div>
 );

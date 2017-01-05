@@ -8,7 +8,7 @@ import { secondsToMinSec } from '../../utils.js';
 const TeamScore = ({teamID, score, turnovers, reverse}) => {
   return (
     <div className={`miniContainer ${reverse ? 'reverse' : ''}`}>
-      <div className="icon"><img src={`https://mrest.protrade.com/api/v7/team/${teamID}/yslogo/96/96?failOnErr=true&forWhiteBG=false`} /></div>
+      <div className="icon"><img src={`https://mrest.protrade.com/api/v7/team/${teamID}/yslogo/256/256?failOnErr=true&forWhiteBG=false`} /></div>
       <div className="teamScore">
         <div className="score">{score}</div>
         <div className="turnovers">TO: {turnovers}</div>

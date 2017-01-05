@@ -18,6 +18,10 @@ The intention of this project was to practice React + Redux Architecture and bui
 
 run `node server.js` and navigate to `http://localhost:3000`
 
+or
+
+go to `https://sport-scorecenter.herokuapp.com`
+
 ## Screenshots
 
 ![screen shot 2016-12-31 at 11 31 21 pm](https://cloud.githubusercontent.com/assets/7545796/21580518/ecf3c3ec-cfb1-11e6-9cee-adb9af563d46.png)
@@ -47,4 +51,3 @@ run `node server.js` and navigate to `http://localhost:3000`
 MIT License
 
 Copyright (c) 2017 Pauras Swami
-

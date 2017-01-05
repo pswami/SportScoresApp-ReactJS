@@ -26477,6 +26477,10 @@
 
 	var _MainContent2 = _interopRequireDefault(_MainContent);
 
+	var _GameStats = __webpack_require__(525);
+
+	var _GameStats2 = _interopRequireDefault(_GameStats);
+
 	var _actions = __webpack_require__(556);
 
 	var actionCreators = _interopRequireWildcard(_actions);
@@ -26520,7 +26524,7 @@
 	  _react2.default.createElement(
 	    _reactRouter.Route,
 	    { path: ':sport', component: _Home2.default },
-	    _react2.default.createElement(_reactRouter.Route, { path: '(:gameID)', component: _MainContent2.default })
+	    _react2.default.createElement(_reactRouter.Route, { path: '(:gameID)', component: _GameStats2.default })
 	  )
 	);
 
@@ -38939,68 +38943,15 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var GAMES_REFRESH_TIME = 15000;
-	var setSportRefreshID = -1;
-
 	var Home = function (_React$Component) {
 	  (0, _inherits3.default)(Home, _React$Component);
 
 	  function Home() {
-	    var _ref;
-
-	    var _temp, _this, _ret;
-
 	    (0, _classCallCheck3.default)(this, Home);
-
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-
-	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Home.__proto__ || (0, _getPrototypeOf2.default)(Home)).call.apply(_ref, [this].concat(args))), _this), _this.setSportInterval = function (sportName) {
-	      var games = _this.props.sportsData.games;
-	      var setSport = _this.props.actions.setSport;
-
-
-	      setSport(sportName);
-
-	      // Reset interval if sport changed
-	      if (setSportRefreshID >= 0) {
-	        clearInterval(setSportRefreshID);
-	      }
-
-	      setSportRefreshID = setInterval(function () {
-	        setSport(sportName);
-
-	        // console.log(games.every(game => game.GameStatus.toLowerCase() === 'final'));
-	        // if (games.every(game => game.GameStatus.toLowerCase() === 'final')) {
-	        //   clearInterval(setSportRefreshID);
-	        //   console.log('all games have ended');
-	        // }
-	      }, GAMES_REFRESH_TIME);
-
-	      console.log('sport changed to', sportName, ' with ID: ', setSportRefreshID);
-	    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+	    return (0, _possibleConstructorReturn3.default)(this, (Home.__proto__ || (0, _getPrototypeOf2.default)(Home)).apply(this, arguments));
 	  }
 
 	  (0, _createClass3.default)(Home, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      var sportName = this.props.routeParams.sport;
-
-	      console.log('Home', 'componentWillMount');
-	      this.setSportInterval(sportName);
-	    }
-	  }, {
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(nextProps) {
-	      var setSport = nextProps.actions.setSport;
-
-
-	      if (nextProps.routeParams.sport !== this.props.routeParams.sport) {
-	        this.setSportInterval(nextProps.routeParams.sport);
-	      }
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -39011,7 +38962,11 @@
 	          'div',
 	          { className: 'mainContainer' },
 	          _react2.default.createElement(_Scoreboard2.default, this.props),
-	          this.props.children
+	          _react2.default.createElement(
+	            _MainContent2.default,
+	            this.props,
+	            this.props.children
+	          )
 	        )
 	      );
 	    }
@@ -49266,6 +49221,27 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(273);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(278);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(279);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(283);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(318);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
 
 	var _react = __webpack_require__(1);
 
@@ -49281,21 +49257,95 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Scoreboard = function Scoreboard(props) {
-	  var _props$sportsData = props.sportsData,
-	      games = _props$sportsData.games,
-	      sport = _props$sportsData.sport,
-	      actions = props.actions,
-	      router = props.router;
+	var GAMES_REFRESH_TIME = 15000;
+	var setSportRefreshID = -1;
 
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'scoreboard' },
-	    games.map(function (game, idx) {
-	      return _react2.default.createElement(_Game2.default, { key: 'game-' + idx, data: game, actions: actions, router: router, sport: sport });
-	    })
-	  );
-	};
+	var Scoreboard = function (_React$Component) {
+	  (0, _inherits3.default)(Scoreboard, _React$Component);
+
+	  function Scoreboard() {
+	    var _ref;
+
+	    var _temp, _this, _ret;
+
+	    (0, _classCallCheck3.default)(this, Scoreboard);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Scoreboard.__proto__ || (0, _getPrototypeOf2.default)(Scoreboard)).call.apply(_ref, [this].concat(args))), _this), _this.setSportInterval = function (sportName) {
+	      var games = _this.props.sportsData.games;
+	      var setSport = _this.props.actions.setSport;
+
+
+	      setSport(sportName);
+
+	      // Reset interval if sport changed
+	      if (setSportRefreshID >= 0) {
+	        clearInterval(setSportRefreshID);
+	      }
+
+	      setSportRefreshID = setInterval(function () {
+	        setSport(sportName);
+
+	        // console.log(games.every(game => game.GameStatus.toLowerCase() === 'final'));
+	        // if (games.every(game => game.GameStatus.toLowerCase() === 'final')) {
+	        //   clearInterval(setSportRefreshID);
+	        //   console.log('all games have ended');
+	        // }
+	      }, GAMES_REFRESH_TIME);
+
+	      console.log('sport changed to', sportName, ' with ID: ', setSportRefreshID);
+	    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+	  }
+
+	  (0, _createClass3.default)(Scoreboard, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var sportName = this.props.routeParams.sport;
+
+	      console.log('Scoreboard', 'componentDidMount');
+	      this.setSportInterval(sportName);
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      var setSport = nextProps.actions.setSport;
+
+
+	      if (nextProps.routeParams.sport !== this.props.routeParams.sport) {
+	        this.setSportInterval(nextProps.routeParams.sport);
+	      }
+	    }
+	  }, {
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate(nextProps, nextState) {
+	      // console.log('Scoreboard shouldComponentUpdate', this.props.sportsData.games !== nextProps.sportsData.games);
+	      return this.props.sportsData.games !== nextProps.sportsData.games;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props,
+	          _props$sportsData = _props.sportsData,
+	          games = _props$sportsData.games,
+	          sport = _props$sportsData.sport,
+	          actions = _props.actions,
+	          router = _props.router;
+
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'scoreboard' },
+	        games.map(function (game, idx) {
+	          return _react2.default.createElement(_Game2.default, { key: 'game-' + idx, data: game, actions: actions, router: router, sport: sport });
+	        })
+	      );
+	    }
+	  }]);
+	  return Scoreboard;
+	}(_react2.default.Component);
 
 	exports.default = Scoreboard;
 
@@ -49374,12 +49424,12 @@
 	      'div',
 	      { className: 'gameContainer' },
 	      _react2.default.createElement(Team, {
-	        icon: _react2.default.createElement('img', { src: 'https://mrest.protrade.com/api/v7/team/' + data.AwayTeamID + '/yslogo/96/96?failOnErr=true&forWhiteBG=false' }),
+	        icon: _react2.default.createElement('img', { src: 'https://mrest.protrade.com/api/v7/team/' + data.AwayTeamID + '/yslogo/256/256?failOnErr=true&forWhiteBG=false' }),
 	        name: data.AwayTeam,
 	        score: data.AwayScore
 	      }),
 	      _react2.default.createElement(Team, {
-	        icon: _react2.default.createElement('img', { src: 'https://mrest.protrade.com/api/v7/team/' + data.HomeTeamID + '/yslogo/96/96?failOnErr=true&forWhiteBG=true' }),
+	        icon: _react2.default.createElement('img', { src: 'https://mrest.protrade.com/api/v7/team/' + data.HomeTeamID + '/yslogo/256/256?failOnErr=true&forWhiteBG=true' }),
 	        name: data.HomeTeam,
 	        score: data.HomeScore
 	      })
@@ -49817,18 +49867,13 @@
 
 	      var routeParamGameID = this.props.routeParams.gameID;
 
+	      console.log('componentWillMount MainContent');
 	      // actions.setGameID(routeParamGameID);
 	    }
 	  }, {
 	    key: 'componentWillReceiveProps',
 	    value: function componentWillReceiveProps(nextProps) {
 	      var actions = nextProps.actions;
-
-	      // const routeParamGameID = nextProps.routeParams.gameID;
-	      //
-	      // if (nextProps.routeParams.gameID !== this.props.routeParams.gameID) {
-	      //   actions.setGameID(routeParamGameID);
-	      // }
 	    }
 	  }, {
 	    key: 'render',
@@ -49839,7 +49884,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'mainContent' },
-	        _react2.default.createElement(_GameStats2.default, this.props)
+	        this.props.children
 	      );
 	    }
 	  }]);
@@ -49911,6 +49956,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactDom = __webpack_require__(32);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
 	var _QuickScore = __webpack_require__(527);
 
 	var _QuickScore2 = _interopRequireDefault(_QuickScore);
@@ -49956,31 +50005,62 @@
 
 	  (0, _createClass3.default)(GameStats, [{
 	    key: 'componentWillMount',
-	    value: function componentWillMount() {
+	    value: function componentWillMount() {}
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
 	      var actions = this.props.actions;
 
 	      var routeParamGameID = this.props.routeParams.gameID;
 
 	      actions.setGameID(routeParamGameID);
 
-	      console.log('GameStats componentWillMount ', this.props);
-	      // setInterval(() => {
-	      //   // console.log(this.props.sportsData.gameDetails.GameId);
-	      // actions.getPlayerStatsByGame(this.props.sportsData.gameDetails.GameId);
-	      // actions.getGameDetails(this.props.sportsData.gameDetails.GameId);
-	      // }, 10000);
+	      console.log('GameStats componentDidMount ');
 	    }
 	  }, {
 	    key: 'componentWillReceiveProps',
 	    value: function componentWillReceiveProps(nextProps) {
 	      var oldGameID = this.props.routeParams.gameID;
 	      var newGameID = nextProps.routeParams.gameID;
-	      // const routeParamGameID = this.props.routeParams.gameID;
 
 	      if (oldGameID !== newGameID) {
-	        console.log('updateGameStats', newGameID);
+	        // console.log('updateGameStats', newGameID);
 	        this.updateGameStats(newGameID);
 	      }
+	    }
+
+	    // componentWillUpdate(nextProps, nextState) {
+	    //   const el = ReactDOM.findDOMNode(this);
+	    //
+	    //   if (this.props.sportsData.gameDetails !== nextProps.sportsData.gameDetails) {
+	    //     el.classList.add('fadeIn');
+	    //   }
+	    // }
+	    //
+	    // componentDidUpdate(prevProps, prevState) {
+	    //   if (this.props.sportsData.gameDetails !== prevProps.sportsData.gameDetails) {
+	    //     const el = ReactDOM.findDOMNode(this);
+	    //
+	    //     setTimeout(function(){
+	    //       el.classList.remove("fadeIn");
+	    //     }, 1000);
+	    //   }
+	    // }
+
+
+	  }, {
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate(nextProps, nextState) {
+	      if (this.props.sportsData.gameDetails !== nextProps.sportsData.gameDetails) {
+
+	        return true;
+	      }
+
+	      if (this.props.sportsData.gameStatsTable !== nextProps.sportsData.gameStatsTable) {
+	        return true;
+	      }
+
+	      return false;
 	    }
 	  }, {
 	    key: 'render',
@@ -50040,7 +50120,7 @@
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'icon' },
-	      _react2.default.createElement('img', { src: 'https://mrest.protrade.com/api/v7/team/' + teamID + '/yslogo/96/96?failOnErr=true&forWhiteBG=false' })
+	      _react2.default.createElement('img', { src: 'https://mrest.protrade.com/api/v7/team/' + teamID + '/yslogo/256/256?failOnErr=true&forWhiteBG=false' })
 	    ),
 	    _react2.default.createElement(
 	      'div',
@@ -57104,6 +57184,10 @@
 	  var action = arguments[1];
 
 	  switch (action.type) {
+	    case 'SET_SPORT':
+	      return (0, _assign2.default)({}, sportsData, { sport: action.payload.sport });
+	    case 'SET_GAME_ID':
+	      return (0, _assign2.default)({}, sportsData, { gameID: action.payload });
 	    case 'GET_GAME_PLAYER_STATS_SUCCEEDED':
 	      return (0, _assign2.default)({}, sportsData, { gameStatsTable: action.payload });
 	    case 'GET_GAME_DETAILS_SUCCEEDED':
@@ -57111,11 +57195,6 @@
 	    case 'GET_GAMES_SUCCEEDED':
 	      // console.log(action);
 	      return (0, _assign2.default)({}, sportsData, { games: action.payload });
-	    case 'SET_SPORT':
-	      return (0, _assign2.default)({}, sportsData, { sport: action.payload.sport });
-	    case 'SET_GAME_ID':
-	      // console.log(action);
-	      return (0, _assign2.default)({}, sportsData, { gameID: action.payload });
 	    default:
 	      return sportsData;
 	  }
@@ -57168,7 +57247,7 @@
 	exports.push([module.id, "@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);", ""]);
 
 	// module
-	exports.push([module.id, "html,\nbody {\n  padding: 0;\n  margin: 0;\n  width: 100%;\n  height: 100%; }\n  html *,\n  body * {\n    font-family: 'Open Sans', sans-serif; }\n\n.navigation .navbar {\n  position: fixed !important; }\n\n.navigation .drawer {\n  margin-top: 64px; }\n\n.mainContainer {\n  position: fixed;\n  left: 250px;\n  top: 64px;\n  display: flex;\n  height: calc(100% - 64px);\n  width: calc(100% - 250px); }\n\n@media screen and (min-width: 979px) {\n  .navigation .drawer {\n    transform: translate(0px, 0px) !important; } }\n\n@media screen and (max-width: 979px) {\n  .mainContainer {\n    left: 0;\n    width: 100%; }\n  .navigation .drawer {\n    transform: inherit; } }\n\n.mainContent {\n  background: #0a0a0a;\n  height: 100%;\n  width: 100%;\n  overflow-y: scroll; }\n\n.scoreboard {\n  background: #363636;\n  width: 350px;\n  height: 100%;\n  overflow-y: scroll;\n  padding-bottom: 30px; }\n\n.game {\n  display: flex;\n  color: white;\n  justify-content: space-between;\n  height: 60px;\n  padding: 10px;\n  padding-top: 15px;\n  padding-bottom: 15px;\n  align-items: center;\n  cursor: pointer; }\n  .game .gameContainer {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    width: 80%;\n    height: inherit; }\n  .game .timeContainer {\n    display: flex;\n    flex-direction: column;\n    align-content: center;\n    justify-content: space-around;\n    text-align: center;\n    height: 45px; }\n    .game .timeContainer .time {\n      font-size: 14px; }\n    .game .timeContainer .periodLine {\n      font-size: 10px; }\n  .game:not(:last-child) {\n    border-bottom: 1px solid #444444; }\n  .game:hover {\n    background: #262829;\n    transition: .2s ease-in-out; }\n\n.team {\n  display: flex;\n  width: 100%;\n  align-items: center; }\n  .team .teamContainer {\n    display: flex;\n    width: 100%;\n    align-items: center; }\n    .team .teamContainer .icon {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      margin-right: 10px; }\n      .team .teamContainer .icon img {\n        width: 24px;\n        height: 24px; }\n  .team .score {\n    font-weight: 900; }\n\n.gameStatsContainer {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  color: white;\n  padding: 20px; }\n  .gameStatsContainer > div {\n    margin-bottom: 10px; }\n\n.quickScoreContainer {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  align-items: center; }\n  .quickScoreContainer .scoreContainer {\n    display: flex;\n    justify-content: space-between;\n    width: 80%; }\n    .quickScoreContainer .scoreContainer .miniContainer {\n      display: flex;\n      flex-direction: row;\n      align-items: center; }\n      .quickScoreContainer .scoreContainer .miniContainer .icon {\n        margin: 0 20px; }\n        .quickScoreContainer .scoreContainer .miniContainer .icon img {\n          width: 96px;\n          height: 96px; }\n      .quickScoreContainer .scoreContainer .miniContainer .teamScore {\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n        text-align: center; }\n        .quickScoreContainer .scoreContainer .miniContainer .teamScore .score {\n          font-size: 30px; }\n        .quickScoreContainer .scoreContainer .miniContainer .teamScore .turnovers {\n          font-size: 12px; }\n      .quickScoreContainer .scoreContainer .miniContainer.reverse {\n        flex-direction: row-reverse; }\n    .quickScoreContainer .scoreContainer .timeInfo {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      justify-content: center; }\n\n.statsTableContainer {\n  width: 100%; }\n\n.periodTableContainer {\n  width: 350px; }\n", ""]);
+	exports.push([module.id, "html,\nbody {\n  padding: 0;\n  margin: 0;\n  width: 100%;\n  height: 100%; }\n  html *,\n  body * {\n    font-family: 'Open Sans', sans-serif; }\n\n.navigation .navbar {\n  position: fixed !important; }\n\n.navigation .drawer {\n  margin-top: 64px; }\n\n.mainContainer {\n  position: fixed;\n  left: 250px;\n  top: 64px;\n  display: flex;\n  height: calc(100% - 64px);\n  width: calc(100% - 250px); }\n\n@media screen and (min-width: 979px) {\n  .navigation .drawer {\n    transform: translate(0px, 0px) !important; } }\n\n@media screen and (max-width: 979px) {\n  .mainContainer {\n    left: 0;\n    width: 100%; }\n  .navigation .drawer {\n    transform: inherit; } }\n\n.mainContent {\n  background: #0a0a0a;\n  height: 100%;\n  width: 100%;\n  overflow-y: scroll; }\n\n.scoreboard {\n  background: #363636;\n  width: 350px;\n  height: 100%;\n  overflow-y: scroll;\n  padding-bottom: 30px; }\n\n.game {\n  display: flex;\n  color: white;\n  justify-content: space-between;\n  height: 60px;\n  padding: 10px;\n  padding-top: 15px;\n  padding-bottom: 15px;\n  align-items: center;\n  cursor: pointer; }\n  .game .gameContainer {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    width: 80%;\n    height: inherit; }\n  .game .timeContainer {\n    display: flex;\n    flex-direction: column;\n    align-content: center;\n    justify-content: space-around;\n    text-align: center;\n    height: 45px; }\n    .game .timeContainer .time {\n      font-size: 14px; }\n    .game .timeContainer .periodLine {\n      font-size: 10px; }\n  .game:not(:last-child) {\n    border-bottom: 1px solid #444444; }\n  .game:hover {\n    background: #262829;\n    transition: .2s ease-in-out; }\n\n.team {\n  display: flex;\n  width: 100%;\n  align-items: center; }\n  .team .teamContainer {\n    display: flex;\n    width: 100%;\n    align-items: center; }\n    .team .teamContainer .icon {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      margin-right: 10px; }\n      .team .teamContainer .icon img {\n        width: 24px;\n        height: 24px; }\n  .team .score {\n    font-weight: 900; }\n\n.gameStatsContainer {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  color: white;\n  padding: 20px; }\n  .gameStatsContainer > div {\n    margin-bottom: 10px; }\n\n.quickScoreContainer {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  align-items: center; }\n  .quickScoreContainer .scoreContainer {\n    display: flex;\n    justify-content: space-between;\n    width: 90%; }\n    .quickScoreContainer .scoreContainer .miniContainer {\n      display: flex;\n      flex-direction: row;\n      align-items: center; }\n      .quickScoreContainer .scoreContainer .miniContainer .icon {\n        margin: 0 20px; }\n        .quickScoreContainer .scoreContainer .miniContainer .icon img {\n          width: 96px;\n          height: 96px; }\n      .quickScoreContainer .scoreContainer .miniContainer .teamScore {\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n        text-align: center; }\n        .quickScoreContainer .scoreContainer .miniContainer .teamScore .score {\n          font-size: 30px; }\n        .quickScoreContainer .scoreContainer .miniContainer .teamScore .turnovers {\n          font-size: 12px; }\n      .quickScoreContainer .scoreContainer .miniContainer.reverse {\n        flex-direction: row-reverse; }\n    .quickScoreContainer .scoreContainer .timeInfo {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      justify-content: center; }\n\n.statsTableContainer {\n  width: 100%; }\n\n.periodTableContainer {\n  width: 350px; }\n\n.fadeIn {\n  animation: fadein 2s; }\n\n@keyframes fadein {\n  from {\n    opacity: 0; }\n  to {\n    opacity: 1; } }\n\n.example-enter {\n  opacity: 0.01; }\n\n.example-enter.example-enter-active {\n  opacity: 1;\n  transition: opacity 500ms ease-in; }\n\n.example-leave {\n  opacity: 1; }\n\n.example-leave.example-leave-active {\n  opacity: 0.01;\n  transition: opacity 500ms ease-in; }\n", ""]);
 
 	// exports
 

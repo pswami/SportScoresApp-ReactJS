@@ -8,17 +8,12 @@ export default class MainContent extends React.Component {
     const { actions } = this.props;
     const routeParamGameID = this.props.routeParams.gameID;
 
+    console.log('componentWillMount MainContent');
     // actions.setGameID(routeParamGameID);
   }
 
   componentWillReceiveProps(nextProps) {
     const { actions } = nextProps;
-
-    // const routeParamGameID = nextProps.routeParams.gameID;
-    //
-    // if (nextProps.routeParams.gameID !== this.props.routeParams.gameID) {
-    //   actions.setGameID(routeParamGameID);
-    // }
   }
 
   render() {
@@ -26,7 +21,7 @@ export default class MainContent extends React.Component {
 
     return (
       <div className="mainContent">
-        <GameStats {...this.props} />
+        {this.props.children}
       </div>
     );
   }

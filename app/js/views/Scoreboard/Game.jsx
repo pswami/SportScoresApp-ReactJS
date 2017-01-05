@@ -24,12 +24,12 @@ const Game = ({data, actions, router, sport}) => {
     }}>
       <div className="gameContainer">
         <Team
-          icon={<img src={`https://mrest.protrade.com/api/v7/team/${data.AwayTeamID}/yslogo/96/96?failOnErr=true&forWhiteBG=false`} />}
+          icon={<img src={`https://mrest.protrade.com/api/v7/team/${data.AwayTeamID}/yslogo/256/256?failOnErr=true&forWhiteBG=false`} />}
           name={data.AwayTeam}
           score={data.AwayScore}
         />
         <Team
-          icon={<img src={`https://mrest.protrade.com/api/v7/team/${data.HomeTeamID}/yslogo/96/96?failOnErr=true&forWhiteBG=true`} />}
+          icon={<img src={`https://mrest.protrade.com/api/v7/team/${data.HomeTeamID}/yslogo/256/256?failOnErr=true&forWhiteBG=true`} />}
           name={data.HomeTeam}
           score={data.HomeScore}
         />
